@@ -1,0 +1,91 @@
+﻿@page "/Auftrag"
+@inherits AuftragViewModel
+
+@if (!isLoadingFinished)
+{
+    <span class="spinner-border spinner-border-sm centerSpinner" role="status" aria-hidden="true"></span>
+    <div class="overlay"></div>
+}
+
+@if (!IsFailed)
+{
+    <div class="mt-2">
+        <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
+    </div>
+
+    <div>
+        <span class="btn btn-nav" @onclick="@CreateItem">Hinzufügen</span>
+    </div>
+    <table class="table table-sm col-12">
+        <thead>
+            <tr>
+
+                <th>
+                    <SortIcon Column="AuftragId" Title="AuftragId" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Kunde" Title="Kunde" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Laufnummer" Title="Laufnummer" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="OrdernummerVINshort" Title="OrdernummerVINshort" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Haendlernummer" Title="Haendlernummer" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="HaendlerName" Title="HaendlerName" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Lieferort" Title="Lieferort" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="LieferortAnsprechpartner" Title="LieferortAnsprechpartner" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Baureihe" Title="Baureihe" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Fahrzeugtyp" Title="Fahrzeugtyp" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Fahrzeugstatus" Title="Fahrzeugstatus" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.AuftragId</td>
+                <td>@item.Kunde</td>
+                <td>@item.Laufnummer</td>
+                <td>@item.OrdernummerVINshort</td>
+                <td>@item.Haendlernummer</td>
+                <td>@item.HaendlerName</td>
+                <td>@item.Lieferort</td>
+                <td>@item.LieferortAnsprechpartner</td>
+                <td>@item.Baureihe</td>
+                <td>@item.Fahrzeugtyp</td>
+                <td>@item.Fahrzeugstatus</td>
+                <td>
+                    <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
+                    <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
+                    <MatButton Class="smallBtnMatBlazor" OnClick="@(_ => OpenConfirmServiceRemove(item))"><i class="btn glyphicon glyphicon-remove-circle cursor"></i></MatButton>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (currentItem != null && EditViewModel.DialogIsOpen)
+    {
+        <EditAuftrag ViewModel="@EditViewModel" SaveItem="@Save" />
+    }
+}
+else
+{
+<ErrorComponent Model="@ErrorModel"></ErrorComponent>
+}

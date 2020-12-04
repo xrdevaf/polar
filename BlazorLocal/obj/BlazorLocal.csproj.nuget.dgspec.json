@@ -1,0 +1,120 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Repository\\PolarEffektStats\\BlazorLocal\\BlazorLocal.csproj": {}
+  },
+  "projects": {
+    "D:\\Repository\\PolarEffektStats\\BlazorLocal\\BlazorLocal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Repository\\PolarEffektStats\\BlazorLocal\\BlazorLocal.csproj",
+        "projectName": "BlazorLocal",
+        "projectPath": "D:\\Repository\\PolarEffektStats\\BlazorLocal\\BlazorLocal.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "D:\\Repository\\PolarEffektStats\\BlazorLocal\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/A4u7YWi6EpBcrludWGSzI1jv2tq5SU42DSBhgc91mMIHUT251L/api": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Repository\\PolarEffektStats\\DbConnector\\DbConnector.csproj": {
+                "projectPath": "D:\\Repository\\PolarEffektStats\\DbConnector\\DbConnector.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MatBlazor": {
+              "target": "Package",
+              "version": "[2.8.0, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.22, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Repository\\PolarEffektStats\\DbConnector\\DbConnector.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Repository\\PolarEffektStats\\DbConnector\\DbConnector.csproj",
+        "projectName": "DbConnector",
+        "projectPath": "D:\\Repository\\PolarEffektStats\\DbConnector\\DbConnector.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+﻿@inject NavigationManager UriHelper
+
+<div class="top-row px-4">
+    <div class="row mr-auto">
+        <a class="nav-link" href="" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri, true))">
+            Home
+        </a>
+        <a class="nav-link" href="Counter" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "Counter", true))">
+            Counter
+        </a>
+        <a class="nav-link" href="fetchdata" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "fetchdata", true))">
+            Fetch data
+        </a>
+        <AuthorizeView>
+            <Authorized>
+                <a class="nav-link" href="Auftrag" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "Auftrag", true))">
+                    Auftrag
+                </a>
+            </Authorized>
+        </AuthorizeView>
+        <AuthorizeView>
+            <Authorized>
+                <a class="nav-link" href="DataSheet" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "DataSheet", true))">
+                    DataSheet
+                </a>
+            </Authorized>
+        </AuthorizeView>
+        <AuthorizeView>
+            <Authorized>
+                <a class="nav-link" href="StatSheet" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "StatSheet", true))">
+                    StatSheet
+                </a>
+            </Authorized>
+        </AuthorizeView>
+    </div>
+    <div class="row align-items-center">
+        <LoginDisplay />
+    </div>
+</div>

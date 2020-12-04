@@ -1,0 +1,9 @@
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\bin\Debug\netstandard2.0\DbConnectStandart.deps.json
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\bin\Debug\netstandard2.0\DbConnectStandart.dll
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\bin\Debug\netstandard2.0\DbConnectStandart.pdb
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.csprojAssemblyReference.cache
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.AssemblyInfoInputs.cache
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.AssemblyInfo.cs
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.csproj.CoreCompileInputs.cache
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.dll
+D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.pdb

@@ -1,0 +1,75 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using MatBlazor
+@using BlazorLocal.PageModels
+
+<div>
+    <MatDialog @bind-IsOpen="@ViewModel.DialogIsOpen" CanBeClosed="false">
+        <EditForm Model="ViewModel.Model" OnValidSubmit="@(() => { SaveItem.InvokeAsync(ViewModel.Model); ViewModel.DialogIsOpen = false; })">
+            <MatDialogTitle class="diHeader">
+                <h3>Auftrag erstellen @(ViewModel.Model.AuftragId > 0 ? "#" + ViewModel.Model.AuftragId : "")</h3>
+                <div class="btn-group">
+                    <input type="submit" value="Speichern" class="btn btn-nav btn-primary mr-1" style="float: right;" />
+                    <span class="btn btn-nav" @onclick="@(e => {ViewModel.DialogIsOpen = false;})">X</span>
+                </div>
+                <hr />
+            </MatDialogTitle>
+            <MatDialogContent>
+                <DataAnnotationsValidator />
+                <div style="width:600px;">
+                    <div class="form-group row mb-1">
+                        <label for="AuftragId" class="col-4 pl-0">AuftragId</label>
+                        <InputNumber @bind-Value="@ViewModel.Model.AuftragId" Class="form-control form-control-sm col-8" id="AuftragId"></InputNumber>
+                        <ValidationMessage For="@(() => ViewModel.Model.AuftragId)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="Kunde" class="col-4 pl-0">Kunde</label>
+                        <InputText @bind-Value="@ViewModel.Model.Kunde" Class="form-control form-control-sm col-8" id="Kunde"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.Kunde)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="Laufnummer" class="col-4 pl-0">Laufnummer</label>
+                        <InputText @bind-Value="@ViewModel.Model.Laufnummer" Class="form-control form-control-sm col-8" id="Laufnummer"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.Laufnummer)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="OrdernummerVINshort" class="col-4 pl-0">OrdernummerVINshort</label>
+                        <InputText @bind-Value="@ViewModel.Model.OrdernummerVINshort" Class="form-control form-control-sm col-8" id="OrdernummerVINshort"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.OrdernummerVINshort)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="Haendlernummer" class="col-4 pl-0">Haendlernummer</label>
+                        <InputText @bind-Value="@ViewModel.Model.Haendlernummer" Class="form-control form-control-sm col-8" id="Haendlernummer"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.Haendlernummer)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="HaendlerName" class="col-4 pl-0">HaendlerName</label>
+                        <InputText @bind-Value="@ViewModel.Model.HaendlerName" Class="form-control form-control-sm col-8" id="HaendlerName"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.HaendlerName)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="Lieferort" class="col-4 pl-0">Lieferort</label>
+                        <InputText @bind-Value="@ViewModel.Model.Lieferort" Class="form-control form-control-sm col-8" id="Lieferort"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.Lieferort)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="LieferortAnsprechpartner" class="col-4 pl-0">LieferortAnsprechpartner</label>
+                        <InputText @bind-Value="@ViewModel.Model.LieferortAnsprechpartner" Class="form-control form-control-sm col-8" id="LieferortAnsprechpartner"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.LieferortAnsprechpartner)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="Baureihe" class="col-4 pl-0">Baureihe</label>
+                        <InputText @bind-Value="@ViewModel.Model.Baureihe" Class="form-control form-control-sm col-8" id="Baureihe"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.Baureihe)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="Fahrzeugtyp" class="col-4 pl-0">Fahrzeugtyp</label>
+                        <InputText @bind-Value="@ViewModel.Model.Fahrzeugtyp" Class="form-control form-control-sm col-8" id="Fahrzeugtyp"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.Fahrzeugtyp)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="Fahrzeugstatus" class="col-4 pl-0">Fahrzeugstatus</label>
+                        <InputText @bind-Value="@ViewModel.Model.Fahrzeugstatus" Class="form-control form-control-sm col-8" id="Fahrzeugstatus"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.Fahrzeugstatus)" />
+                    </div>
+
+                </div>
+            </MatDialogContent>
+        </EditForm>
+    </MatDialog>
+</div>
+@code {
+    [Parameter] public EditDialogAuftragViewModel ViewModel { get; set; }
+
+    [Parameter] public EventCallback<AuftragItemViewModel> SaveItem { get; set; }
+
+}
