@@ -46,6 +46,7 @@ namespace DbConnector
                 "where b.articleID != 0 " +
                 "and a.id not in (" +
                 "SELECT distinct a.id FROM s_order as a " +
+                "join s_order_details as b on a.id = b.orderID " +
                 "join magnalister_orders as c on a.id = c.orders_id " +
                 "where b.articleID != 0);";
                 MySqlCommand command = new MySqlCommand(sql, connection);
@@ -85,6 +86,7 @@ namespace DbConnector
                 "where b.articleID != 0 " +
                 "and a.id not in (" +
                 "SELECT distinct a.id FROM s_order as a " +
+                "join s_order_details as b on a.id = b.orderID " +
                 "join magnalister_orders as c on a.id = c.orders_id " +
                 "where b.articleID != 0);";
                 int sworders = 0;
@@ -131,6 +133,7 @@ namespace DbConnector
               "where b.articleID != 0 " +
               "and a.id not in (" +
                 "SELECT distinct a.id FROM s_order as a " +
+                "join s_order_details as b on a.id = b.orderID " +
                 "join magnalister_orders as c on a.id = c.orders_id " +
                 "where b.articleID != 0);";
                 command = new MySqlCommand(sql, connection);
