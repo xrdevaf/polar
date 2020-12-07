@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WYq5x3ljm4J90EJpv04XcjezLRmXAKKT4XsspvRTVNOKg4KJd3NntyVFcLlsPZn7sOwAw5fH/TBLPcJAVaoQDg==",
+  "dgSpecHash": "gk8bn6lx8hizRfcsl7AvIpfVzV8DEJwRC1fS+B7pwFrR799OfXM7CwOhAF463Eu3ptZ/QtsqZoU7U2YPT4r5vg==",
   "success": true,
-  "projectFilePath": "D:\\Repository\\Sibelektroshopstats_temp\\DbConnectStandart\\DbConnectStandart.csproj",
+  "projectFilePath": "D:\\Repository\\PolarEffektStats\\DbConnectStandart\\DbConnectStandart.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",

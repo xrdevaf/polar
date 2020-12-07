@@ -69,10 +69,12 @@ namespace BlazorLocal
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            var Conn = Configuration.GetConnectionString("MySQLConnection");
+
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<AuftragService>();
-            services.AddScoped<DataSheetService>();
-            services.AddScoped<StatSheetService>();
+            services.AddScoped<DataSheetService>(option => new DataSheetService(Conn));
+            services.AddScoped<StatSheetService>(option => new StatSheetService(Conn));
             services.AddMatBlazor();
 
             services.AddSingleton(Configuration.GetSection("MailSetting").Get<MailSettings>());

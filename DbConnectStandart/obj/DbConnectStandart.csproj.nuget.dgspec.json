@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repository\\Sibelektroshopstats_temp\\DbConnectStandart\\DbConnectStandart.csproj": {}
+    "D:\\Repository\\PolarEffektStats\\DbConnectStandart\\DbConnectStandart.csproj": {}
   },
   "projects": {
-    "D:\\Repository\\Sibelektroshopstats_temp\\DbConnectStandart\\DbConnectStandart.csproj": {
+    "D:\\Repository\\PolarEffektStats\\DbConnectStandart\\DbConnectStandart.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repository\\Sibelektroshopstats_temp\\DbConnectStandart\\DbConnectStandart.csproj",
+        "projectUniqueName": "D:\\Repository\\PolarEffektStats\\DbConnectStandart\\DbConnectStandart.csproj",
         "projectName": "DbConnectStandart",
-        "projectPath": "D:\\Repository\\Sibelektroshopstats_temp\\DbConnectStandart\\DbConnectStandart.csproj",
+        "projectPath": "D:\\Repository\\PolarEffektStats\\DbConnectStandart\\DbConnectStandart.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\Repository\\Sibelektroshopstats_temp\\DbConnectStandart\\obj\\",
+        "outputPath": "D:\\Repository\\PolarEffektStats\\DbConnectStandart\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"

@@ -100,7 +100,7 @@
   <ItemGroup>
     <Compile Include="ModelsDB\DataSheet.cs" />
     <Compile Include="ModelsDB\StatSheet.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

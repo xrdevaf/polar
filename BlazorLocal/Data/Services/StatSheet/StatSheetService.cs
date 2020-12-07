@@ -11,9 +11,23 @@ namespace BlazorLocal.Data.Services
 {
     public class StatSheetService
     {
+        private readonly string _connStr;
+
+        public StatSheetService(string connStr)
+        {
+            _connStr = connStr;
+        }
         public async Task<List<StatSheetItemViewModel>> GetAll()
         {
-            var result = new DbConnector.DbContext("Server=192.168.8.102;Port=3306;Database=shopware;Uid=root;Pwd=root;").GetStats().Select(r => Convert(r)).ToList();
+            List<StatSheetItemViewModel> result = new List<StatSheetItemViewModel>();
+            for (int year = 2019; year < 2021; year++)
+            {
+                for (int month = 1; month < 13; month++)
+                {
+                   var point = new DbConnector.DbContext(_connStr).GetStats(year, month);
+                   result.Add(Convert(point));
+                }
+            }
             return result;
         }
         private static StatSheetItemViewModel Convert(StatSheet r)

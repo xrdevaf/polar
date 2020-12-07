@@ -4,23 +4,23 @@ using DbConnector.ModelsDB;
 
 namespace BlazorLocal.PageModels
 {
-	public class StatSheetItemViewModel : ICloneable
-	{
-		private StatSheet _item;
+    public class StatSheetItemViewModel : ICloneable
+    {
+        private StatSheet _item;
 
-		public StatSheetItemViewModel()
-		{
-			_item = new StatSheet();
-		}
+        public StatSheetItemViewModel()
+        {
+            _item = new StatSheet();
+        }
 
-		public StatSheetItemViewModel(StatSheet model)
-		{
-			_item = model;
-		}
+        public StatSheetItemViewModel(StatSheet model)
+        {
+            _item = model;
+        }
 
-		public StatSheet Item => _item;
+        public StatSheet Item => _item;
 
-		/*public List<ChangeLog> ChangeLog
+        /*public List<ChangeLog> ChangeLog
         {
             get
             {
@@ -28,77 +28,99 @@ namespace BlazorLocal.PageModels
             }
         }
 		*/
-		public int sworders
-		{
-			get
-			{
-				return _item.sworders;
-			}
-			set
-			{
-				_item.sworders = value;
-			}
-		}
-		public int allorders
-		{
-			get
-			{
-				return _item.allorders;
-			}
-			set
-			{
-				_item.allorders = value;
-			}
-		}
-		public int soldproducts
-		{
-			get
-			{
-				return _item.soldproducts;
-			}
-			set
-			{
-				_item.soldproducts = value;
-			}
-		}
-		public int soldproductssw
-		{
-			get
-			{
-				return _item.soldproductssw;
-			}
-			set
-			{
-				_item.soldproductssw = value;
-			}
-		}
-		public int mangalisterorders
-		{
-			get
-			{
-				return _item.mangalisterorders;
-			}
-			set
-			{
-				_item.mangalisterorders = value;
-			}
-		}
-		public int soldproductsmangalister
-		{
-			get
-			{
-				return _item.soldproductsmangalister;
-			}
-			set
-			{
-				_item.soldproductsmangalister = value;
-			}
-		}
-		public object Clone()
-		{
-			StatSheetItemViewModel tempObject = (StatSheetItemViewModel)this.MemberwiseClone();
-			tempObject._item = (StatSheet)_item.Clone();
-			return tempObject;
-		}
-	}
+        public int year
+        {
+            get
+            {
+                return _item.year;
+            }
+            set
+            {
+                _item.year = value;
+            }
+        }
+        public int month
+        {
+            get
+            {
+                return _item.month;
+            }
+            set
+            {
+                _item.month = value;
+            }
+        }
+        public int sworders
+        {
+            get
+            {
+                return _item.sworders;
+            }
+            set
+            {
+                _item.sworders = value;
+            }
+        }
+        public int allorders
+        {
+            get
+            {
+                return _item.allorders;
+            }
+            set
+            {
+                _item.allorders = value;
+            }
+        }
+        public int soldproducts
+        {
+            get
+            {
+                return _item.soldproducts;
+            }
+            set
+            {
+                _item.soldproducts = value;
+            }
+        }
+        public int soldproductssw
+        {
+            get
+            {
+                return _item.soldproductssw;
+            }
+            set
+            {
+                _item.soldproductssw = value;
+            }
+        }
+        public int mangalisterorders
+        {
+            get
+            {
+                return _item.mangalisterorders;
+            }
+            set
+            {
+                _item.mangalisterorders = value;
+            }
+        }
+        public int soldproductsmangalister
+        {
+            get
+            {
+                return _item.soldproductsmangalister;
+            }
+            set
+            {
+                _item.soldproductsmangalister = value;
+            }
+        }
+        public object Clone()
+        {
+            StatSheetItemViewModel tempObject = (StatSheetItemViewModel)this.MemberwiseClone();
+            tempObject._item = (StatSheet)_item.Clone();
+            return tempObject;
+        }
+    }
 }

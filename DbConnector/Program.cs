@@ -74,110 +74,22 @@ namespace DbConnector
                 return null;
             }
         }
-        public List<StatSheet> GetStats()
+        public StatSheet GetStats(int year, int month)
         {
             try
             {
-                List<StatSheet> list = new List<StatSheet>();
-                string sql = "SELECT " +
-                "count(distinct a.ordernumber) " +
-                "FROM s_order as a " +
-                "join s_order_details as b on a.id = b.orderID " +
-                "where b.articleID != 0 " +
-                "and a.id not in (" +
-                "SELECT distinct a.id FROM s_order as a " +
-                "join s_order_details as b on a.id = b.orderID " +
-                "join magnalister_orders as c on a.id = c.orders_id " +
-                "where b.articleID != 0);";
-                int sworders = 0;
-                int allorders = 0;
-                int soldproducts = 0;
-                int soldproductssw = 0;
-                int mangalisterorders = 0;
-                int soldproductsmangalister = 0;
-                MySqlCommand command = new MySqlCommand(sql, connection);
-                MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                StatSheet list = new StatSheet();
+                list = new StatSheet()
                 {
-                    sworders = int.Parse(reader[0].ToString());
-                }
-                reader.Close();
-                sql = "SELECT " +
-               "count(distinct a.ordernumber) " +
-               "FROM s_order as a " +
-               "join s_order_details as b on a.id = b.orderID " +
-               "where b.articleID != 0 ";
-                command = new MySqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    allorders = int.Parse(reader[0].ToString());
-                }
-                reader.Close();
-                sql = "SELECT " +
-              "count(b.articleID) " +
-              "FROM s_order as a " +
-              "join s_order_details as b on a.id = b.orderID " +
-              "where b.articleID != 0 ";
-                command = new MySqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    soldproducts = int.Parse(reader[0].ToString());
-                }
-                reader.Close();
-                     sql = "SELECT " +
-              "count(b.articleID) " +
-              "FROM s_order as a " +
-              "join s_order_details as b on a.id = b.orderID " +
-              "where b.articleID != 0 " +
-              "and a.id not in (" +
-                "SELECT distinct a.id FROM s_order as a " +
-                "join s_order_details as b on a.id = b.orderID " +
-                "join magnalister_orders as c on a.id = c.orders_id " +
-                "where b.articleID != 0);";
-                command = new MySqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    soldproductssw = int.Parse(reader[0].ToString());
-                }
-                reader.Close();
-                sql = "SELECT " +
-              "count(distinct a.ordernumber) " +
-              "FROM s_order as a " +
-              "join s_order_details as b on a.id = b.orderID " +
-              "join magnalister_orders as c on a.id = c.orders_id " +
-              "where b.articleID != 0";
-                command = new MySqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    mangalisterorders = int.Parse(reader[0].ToString());
-                }
-                reader.Close();
-                sql = "SELECT " +
-              "count(b.articleID) " +
-              "FROM s_order as a " +
-              "join s_order_details as b on a.id = b.orderID " +
-              "join magnalister_orders as c on a.id = c.orders_id " +
-              "where b.articleID != 0";
-                command = new MySqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    soldproductsmangalister = int.Parse(reader[0].ToString());
-                }
-                reader.Close();
-                list.Add(new StatSheet()
-                {
-                    sworders = sworders,
-                    allorders = allorders,
-                    soldproducts = soldproducts,
-                    soldproductssw = soldproductssw,
-                    mangalisterorders = mangalisterorders,
-                    soldproductsmangalister = soldproductsmangalister
-                });
+                    year = year,
+                    month = month,
+                    sworders = GetStatsZero(year, month),
+                    allorders = GetStatsOne(year, month),
+                    soldproducts = GetStatsTwo(year, month),
+                    soldproductssw = GetStatsThree(year, month),
+                    mangalisterorders = GetStatsFour(year, month),
+                    soldproductsmangalister = GetStatsFive(year, month)
+                };
                 CloseConnection();
                 return list;
             }
@@ -188,6 +100,126 @@ namespace DbConnector
                 CloseConnection();
                 return null;
             }
+        }
+        int GetStatsZero(int year, int month)
+        {
+            string sql = @"SELECT count(distinct a.ordernumber)
+                FROM s_order as a join s_order_details as b on a.id = b.orderID where b.articleID != 0 and a.id not in
+                (SELECT distinct aa.id FROM s_order as aa join s_order_details as bb on aa.id = bb.orderID
+                join magnalister_orders as cc on aa.id = cc.orders_id where bb.articleID != 0) " 
+                + "and year(a.ordertime) = " + year.ToString() + " and month(a.ordertime) = " + month.ToString() +
+                " group by year(a.ordertime),month(a.ordertime);";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            int result = 0;
+            while (reader.Read())
+            {
+                result = int.Parse(reader[0].ToString());
+            }
+            reader.Close();
+            return result;
+        }
+        int GetStatsOne(int year, int month)
+        { 
+            string sql = "SELECT " +
+                "count(distinct a.ordernumber) " +
+                "FROM s_order as a " +
+                "join s_order_details as b on a.id = b.orderID " +
+                "where b.articleID != 0 " +
+                "and year(a.ordertime) = " + year.ToString() + " and month(a.ordertime) = " + month.ToString() +
+                " group by year(a.ordertime),month(a.ordertime);";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            int result = 0;
+            while (reader.Read())
+            {
+                result = int.Parse(reader[0].ToString());
+            }
+            reader.Close();
+            return result;
+        }
+        int GetStatsTwo(int year, int month)
+        {
+            string sql = "SELECT " +
+           "count(b.articleID) " +
+           "FROM s_order as a " +
+           "join s_order_details as b on a.id = b.orderID " +
+           "where b.articleID != 0 " +
+           "and year(a.ordertime) = " + year.ToString() + " and month(a.ordertime) = " + month.ToString() +
+                " group by year(a.ordertime),month(a.ordertime);";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            int result = 0;
+            while (reader.Read())
+            {
+                result = int.Parse(reader[0].ToString());
+            }
+            reader.Close();
+            return result;
+        }
+        int GetStatsThree(int year, int month)
+        {
+            string sql = "SELECT " +
+         "count(b.articleID) " +
+         "FROM s_order as a " +
+         "join s_order_details as b on a.id = b.orderID " +
+         "where b.articleID != 0 " +
+         "and a.id not in (" +
+           "SELECT distinct a.id FROM s_order as a " +
+           "join s_order_details as b on a.id = b.orderID " +
+           "join magnalister_orders as c on a.id = c.orders_id " +
+           "where b.articleID != 0) " +
+           "and year(a.ordertime) = " + year.ToString() + " and month(a.ordertime) = " + month.ToString() +
+                " group by year(a.ordertime),month(a.ordertime);";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            int result = 0;
+            while (reader.Read())
+                {
+                result = int.Parse(reader[0].ToString());
+                }
+                reader.Close();
+            return result;
+        }
+        int GetStatsFour(int year, int month)
+        {
+            string sql = "SELECT " +
+            "count(distinct a.ordernumber) " +
+            "FROM s_order as a " +
+            "join s_order_details as b on a.id = b.orderID " +
+            "join magnalister_orders as c on a.id = c.orders_id " +
+            "where b.articleID != 0 " +
+            "and year(a.ordertime) = " + year.ToString() + " and month(a.ordertime) = " + month.ToString() +
+                " group by year(a.ordertime),month(a.ordertime);";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            int result = 0;
+            while (reader.Read())
+            {
+                result = int.Parse(reader[0].ToString());
+            }
+            reader.Close();
+            return result;
+        }
+        int GetStatsFive(int year, int month)
+        {
+            string sql = "SELECT " +
+             "count(b.articleID) " +
+             "FROM s_order as a " +
+             "join s_order_details as b on a.id = b.orderID " +
+             "join magnalister_orders as c on a.id = c.orders_id " +
+             "where b.articleID != 0 " +
+             "and year(a.ordertime) = " + year.ToString() + " and month(a.ordertime) = " + month.ToString() +
+                " group by year(a.ordertime),month(a.ordertime);";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            int result = 0;
+            while (reader.Read())
+            {
+                result = int.Parse(reader[0].ToString());
+            }
+            reader.Close();
+            return result;
         }
 
         public void CloseConnection()

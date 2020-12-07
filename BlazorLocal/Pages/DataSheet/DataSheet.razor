@@ -9,10 +9,10 @@
 
 @if (!IsFailed)
 {
+    <h1>Aufträge</h1>
     <div class="mt-2">
         <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
     </div>
-
     @* <div>
             <span class="btn btn-nav" @onclick="@CreateItem">Hinzufügen</span>
         </div> *@
@@ -41,28 +41,28 @@
         </thead>
         @foreach (var item in Model)
         {
-    <tr>
+            <tr>
 
-        <td>@item.id</td>
-        <td>@item.ordernumber</td>
-        <td>@item.ordertime</td>
-        <td>@item.articleid</td>
-        <td>@item.articleordernumber</td>
-        @* <td>
-            <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
-            <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
-            <MatButton Class="smallBtnMatBlazor" OnClick="@(_ => OpenConfirmServiceRemove(item))"><i class="btn glyphicon glyphicon-remove-circle cursor"></i></MatButton>
-        </td> *@
-    </tr>
+                <td>@item.id</td>
+                <td>@item.ordernumber</td>
+                <td>@item.ordertime</td>
+                <td>@item.articleid</td>
+                <td>@item.articleordernumber</td>
+                @* <td>
+                        <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
+                        <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
+                        <MatButton Class="smallBtnMatBlazor" OnClick="@(_ => OpenConfirmServiceRemove(item))"><i class="btn glyphicon glyphicon-remove-circle cursor"></i></MatButton>
+                    </td> *@
+            </tr>
         }
     </table>
 }
-    @*   @if (currentItem != null && EditViewModel.DialogIsOpen)
-            {
-                <EditDataSheet ViewModel="@EditViewModel" SaveItem="@Save" />
-            }
-        }
-        else
+@*   @if (currentItem != null && EditViewModel.DialogIsOpen)
         {
-            <ErrorComponent Model="@ErrorModel"></ErrorComponent>
-        } *@
+            <EditDataSheet ViewModel="@EditViewModel" SaveItem="@Save" />
+        }
+    }
+    else
+    {
+        <ErrorComponent Model="@ErrorModel"></ErrorComponent>
+    } *@
