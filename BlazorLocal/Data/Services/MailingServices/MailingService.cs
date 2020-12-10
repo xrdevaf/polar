@@ -5,30 +5,30 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using BlazorLocal.Data.Models;
 using BlazorLocal.PageModels;
+using BlazorLocal.Shared;
 
 namespace BlazorLocal.Data.Services.MailingServices
 {
     public class MailingService : BaseMailingService
     {
-        public MailingService(MailSettings settings) : base(settings)
+        public MailingService(ApplicationDbContext context) : base(context)
         {
         }
-        public bool SendMessage(AuftragItemViewModel item, string from)
+
+        public bool SendMessage(EmailModel model)
         {
             var mailData = new MailData();
-            //mailData.ToEmail = new MailAddress(to);        
-            mailData.ToEmail = new MailAddress(@"arthur.fischer@alfatraining.de"); //For TEST-CASE!!!      
-            // mailData.ToEmail = new MailAddress(@"aleksa06101@gmail.com"); //For TEST-CASE!!!      
-            mailData.FromEmail = new MailAddress(mMailSettings.FROM);
-            mailData.BccEmail = new MailAddress(mMailSettings.BCC);
+            mailData.ToEmail = new MailAddress(model.To);        
+            mailData.FromEmail = new MailAddress(model.From);
+            mailData.BccEmail = new MailAddress(model.From);
 
             try
             {
-                mailData.Subject = "Anfrage Subject";
-                mailData.Body = GetBody(item);
+                mailData.Subject = model.Subject;
+                mailData.Body = model.Body;
                // mailData.AttachmentData = AddAttachmentList(item).GetAwaiter().GetResult();
 
-                mEmailClient.SendMail(mailData);
+               SendMail(mailData);
             }
             catch (Exception ex)
             {
@@ -45,14 +45,6 @@ namespace BlazorLocal.Data.Services.MailingServices
             }
 
             return true;
-        }
-
-        private string GetBody(AuftragItemViewModel item)
-        {
-            string body = string.Empty;
-            body += item.AuftragId + " " + item.Kunde?.Trim() + " " + item.Laufnummer?.Trim();
-
-            return body;
-        }
+        }      
     }
 }

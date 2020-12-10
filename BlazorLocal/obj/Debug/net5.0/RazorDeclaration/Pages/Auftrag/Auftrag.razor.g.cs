@@ -89,6 +89,13 @@ using MatBlazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\Auftrag.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Auftrag")]
     public partial class Auftrag : AuftragViewModel
     {

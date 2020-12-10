@@ -83,22 +83,29 @@ using BlazorLocal.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
-using System.ComponentModel.DataAnnotations;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
+#line 11 "D:\Repository\PolarEffektStats\BlazorLocal\_Imports.razor"
 using MatBlazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
+#line 1 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
 using BlazorLocal.PageModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
+using BlazorLocal.Data.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
+using BlazorLocal.Data.Models;
 
 #line default
 #line hidden
@@ -111,16 +118,32 @@ using BlazorLocal.PageModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
+#line 120 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Auftrag\EditAuftrag.razor"
        
     [Parameter] public EditDialogAuftragViewModel ViewModel { get; set; }
 
     [Parameter] public EventCallback<AuftragItemViewModel> SaveItem { get; set; }
 
+    protected List<KundeItemViewModel> KundeList { get; set; }
+    private ConfigurationModel currentConfigurationModel;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        KundeList = await kundeService.GetAll();
+        await base.OnParametersSetAsync();
+        currentConfigurationModel = ViewModel.Model.Configuration;
+    }
+
+    private async Task Selectedkunde(ChangeEventArgs args)
+    {
+        var kundeId = int.Parse(args.Value.ToString());
+        currentConfigurationModel = KundeList.FirstOrDefault(r => r.KundeId == kundeId)?.ConfModel ?? new ConfigurationModel();
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private KundeService kundeService { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -1,0 +1,79 @@
+﻿@page "/ShopDiffPolar"
+@inherits BlazorLocal.Pages.ShopDiffPolar.ShopDiffPolarViewModel
+
+@if (!isLoadingFinished)
+{
+    <span class="spinner-border spinner-border-sm centerSpinner" role="status" aria-hidden="true"></span>
+    <div class="overlay"></div>
+}
+
+@if (!IsFailed)
+{
+    <h1>Statistik</h1>
+    <div class="mt-2">
+        <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
+    </div>
+
+    @* <div>
+            <span class="btn btn-nav" @onclick="@CreateItem">Hinzufügen</span>
+        </div> *@
+    <table class="table table-sm col-12">
+        <thead>
+            <tr>
+                <th>
+                    <SortIcon Column="Year" Title="Jahr" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Month" Title="Monat" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Allorders" Title="All orders" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Shoporders" Title="SW orders" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Mangalisterorders" Title="Mangalister orders" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Soldproducts" Title="Sold products" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Soldproductssw" Title="Sold products SW" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Soldproductsmangalister" Title="Sold products mangalister" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.year</td>
+                <td>@item.month</td>
+                <td>@item.allorders</td>
+                <td>@item.sworders</td>
+                <td>@item.mangalisterorders</td>
+                <td>@item.soldproducts</td>
+                <td>@item.soldproductssw</td>
+                <td>@item.soldproductsmangalister</td>
+                @* <td>
+                        <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
+                        <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
+                        <MatButton Class="smallBtnMatBlazor" OnClick="@(_ => OpenConfirmServiceRemove(item))"><i class="btn glyphicon glyphicon-remove-circle cursor"></i></MatButton>
+                    </td> *@
+            </tr>
+        }
+    </table>
+}
+@*   @if (currentItem != null && EditViewModel.DialogIsOpen)
+        {
+            <EditDataSheet ViewModel="@EditViewModel" SaveItem="@Save" />
+        }
+    }
+    else
+    {
+        <ErrorComponent Model="@ErrorModel"></ErrorComponent>
+    } *@

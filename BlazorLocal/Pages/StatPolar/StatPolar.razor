@@ -1,0 +1,63 @@
+﻿@page "/StatPolar"
+@inherits BlazorLocal.Pages.StatPolar.StatPolarViewModel
+
+@if (!isLoadingFinished)
+{
+    <span class="spinner-border spinner-border-sm centerSpinner" role="status" aria-hidden="true"></span>
+    <div class="overlay"></div>
+}
+
+@if (!IsFailed)
+{
+    <h1>Statistik</h1>
+    <div class="mt-2">
+        <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
+    </div>
+
+    @* <div>
+            <span class="btn btn-nav" @onclick="@CreateItem">Hinzufügen</span>
+        </div> *@
+    <table class="table table-sm col-12">
+        <thead>
+            <tr>
+                <th>
+                    <SortIcon Column="Year" Title="Jahr" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Month" Title="Monat" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Shopware" Title="Polar" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                    <SortIcon Column="Percentage" Title="%" Sort="@Sort"></SortIcon>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.year</td>
+                <td>@item.month</td>
+                <td>@item.shopware</td>
+                <td>@item.percentage</td>
+                @* <td>
+                        <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
+                        <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
+                        <MatButton Class="smallBtnMatBlazor" OnClick="@(_ => OpenConfirmServiceRemove(item))"><i class="btn glyphicon glyphicon-remove-circle cursor"></i></MatButton>
+                    </td> *@
+            </tr>
+        }
+    </table>
+}
+@*   @if (currentItem != null && EditViewModel.DialogIsOpen)
+        {
+            <EditDataSheet ViewModel="@EditViewModel" SaveItem="@Save" />
+        }
+    }
+    else
+    {
+        <ErrorComponent Model="@ErrorModel"></ErrorComponent>
+    } *@

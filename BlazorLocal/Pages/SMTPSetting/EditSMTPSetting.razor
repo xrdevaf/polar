@@ -1,0 +1,65 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using MatBlazor
+@using BlazorLocal.PageModels
+
+<div>
+    <MatDialog @bind-IsOpen="@ViewModel.DialogIsOpen" CanBeClosed="false">
+        <EditForm Model="ViewModel.Model" OnValidSubmit="@(() => { SaveItem.InvokeAsync(ViewModel.Model); ViewModel.DialogIsOpen = false; })">
+            <MatDialogTitle class="diHeader">
+                <h3>SMTPSetting erstellen @(ViewModel.Model.SMTPSettingId > 0 ? "#" + ViewModel.Model.SMTPSettingId : "")</h3>
+                <div class="btn-group">
+                    <input type="submit" value="Speichern" class="btn btn-nav btn-primary mr-1" style="float: right;" />
+                    <span class="btn btn-nav" @onclick="@(e => {ViewModel.DialogIsOpen = false;})">X</span>
+                </div>
+                <hr />
+            </MatDialogTitle>
+            <MatDialogContent>
+                <DataAnnotationsValidator />
+                <div style="width:600px;">
+                    <div class="form-group row mb-1">
+                        <label for="SMTPUsername" class="col-4 pl-0">SMTPUsername</label>
+                        <InputText @bind-Value="@ViewModel.Model.SMTPUsername" Class="form-control form-control-sm col-8" id="SMTPUsername"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.SMTPUsername)" />
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label for="SMTPPassword" class="col-4 pl-0">SMTPPassword</label>
+                        <InputText @bind-Value="@ViewModel.Model.SMTPPassword" Class="form-control form-control-sm col-8" id="SMTPPassword"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.SMTPPassword)" />
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label for="SMTPServer" class="col-4 pl-0">SMTPServer</label>
+                        <InputText @bind-Value="@ViewModel.Model.SMTPServer" Class="form-control form-control-sm col-8" id="SMTPServer"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.SMTPServer)" />
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label for="SMTPPort" class="col-4 pl-0">SMTPPort</label>
+                        <InputNumber @bind-Value="@ViewModel.Model.SMTPPort" Class="form-control form-control-sm col-8" id="SMTPPort"></InputNumber>
+                        <ValidationMessage For="@(() => ViewModel.Model.SMTPPort)" />
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label for="EnableSSL" class="col-4 pl-0">EnableSSL</label>
+                        <div class="text-left">
+                            <InputCheckbox @bind-Value="@ViewModel.Model.EnableSSL" Class="form-control form-control-sm col-8" id="EnableSSL"></InputCheckbox>
+                        </div>
+                        <ValidationMessage For="@(() => ViewModel.Model.EnableSSL)" />
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label for="IsActive" class="col-4 pl-0">Is Active</label>
+                        <div class="text-left">
+                            <InputCheckbox @bind-Value="@ViewModel.Model.IsActive" Class="form-control form-control-sm col-8" id="IsActive"></InputCheckbox>
+                        </div>
+                        <ValidationMessage For="@(() => ViewModel.Model.IsActive)" />
+                    </div>
+                </div>
+            </MatDialogContent>
+        </EditForm>
+    </MatDialog>
+</div>
+@code {
+    [Parameter]
+    public EditDialogSMTPSettingViewModel ViewModel { get; set; }
+
+    [Parameter]
+    public EventCallback<SMTPSettingItemViewModel> SaveItem { get; set; }
+
+}

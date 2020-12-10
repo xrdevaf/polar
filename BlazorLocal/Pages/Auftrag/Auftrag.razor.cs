@@ -23,19 +23,20 @@ namespace BlazorLocal.Pages.Auftrag
         protected AuftragItemViewModel currentItem;
 
         protected EditDialogAuftragViewModel EditViewModel = new EditDialogAuftragViewModel();
+        protected EmailComponentModel EmailComponentModel = new EmailComponentModel();
         protected bool IsFailed { get; set; }
         protected bool isLoadingFinished = true;
+        protected string selectedFahrzeugstatus = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
             try
             {
                 Model = await Service.GetAll();
-
             }
             catch (Exception e)
             {
-                //Logger.LogError(e, $"{GetUserName}*Error: AuftragPage/OnInitializedAsync");
+                Logger.LogError(e, $"{GetUserName()}*Error: AuftragPage/OnInitializedAsync");
                 ErrorModel.IsOpen = true;
                 ErrorModel.ErrorContext = e.StackTrace;
                 ErrorModel.ErrorMessage = e.Message;
@@ -58,40 +59,25 @@ namespace BlazorLocal.Pages.Auftrag
             StateHasChanged();
         }
 
-        protected void Save(AuftragItemViewModel item)
+        protected async Task Save(AuftragItemViewModel item)
         {
             try
             {
                 if (item.AuftragId > 0)
                 {
                     Service.Update(item);
-                    var index = Model.FindIndex(x => x.AuftragId == this.currentItem.AuftragId);
-                    Model[index] = item;
-                    StateHasChanged();
-
                 }
                 else
                 {
-                    if (Model.Count() > 0)
-                    {
-                        item.AuftragId = Model.Select(r => r.AuftragId).Max() + 1;
-                    }
-                    else
-                    {
-                        item.AuftragId = 1;
-                    }
-
-                    var newItem = Service.Create(item);
-                    if (newItem != null)
-                    {
-                        Model.Add(newItem);
-                    }
+                    Service.Create(item);
                 }
+
+                Model = await Service.GetAll();
                 StateHasChanged();
             }
             catch (Exception e)
             {
-                //Logger.LogError(e, $"{GetUserName}*Error: AuftragPage/Save");
+                Logger.LogError(e, $"{GetUserName()}*Error: AuftragPage/Save");
                 ErrorModel.IsOpen = true;
                 ErrorModel.ErrorContext = e.StackTrace;
                 ErrorModel.ErrorMessage = e.Message;
@@ -105,33 +91,21 @@ namespace BlazorLocal.Pages.Auftrag
             EditViewModel.Model = currentItem;
             EditViewModel.DialogIsOpen = true;
         }
-
-        protected void Remove(AuftragItemViewModel item)
+        
+        protected async Task OpenSendMail(AuftragItemViewModel auftrag)
         {
-            try
-            {
-                Service.Delete(item);
-                Model.Remove(item);
-            }
-
-            catch (Exception e)
-            {
-                //Logger.LogError(e, $"{GetUserName}*Error: AuftragPage/Remove");
-                ErrorModel.IsOpen = true;
-                ErrorModel.ErrorContext = e.StackTrace;
-                ErrorModel.ErrorMessage = e.Message;
-                IsFailed = true;
-                StateHasChanged();
-            }
+            EmailComponentModel.DefaultFrom = GetUserName();
+            EmailComponentModel.DefaultBodyText = auftrag.AuftragId + " " + auftrag.KundeItem?.KundeName.Trim() + " " + auftrag.Laufnummer?.Trim();
+            EmailComponentModel.IsOpen = true;
         }
 
-        protected async Task SendMail(AuftragItemViewModel auftrag)
+        protected async Task SendMail(EmailModel emailModel)
         {
             isLoadingFinished = false;
             await Task.Delay(1);
             try
             {
-                var result = MailingService.SendMessage(auftrag, GetUserName());
+                var result = MailingService.SendMessage(emailModel);
 
                 if (result)
                 {
@@ -140,7 +114,7 @@ namespace BlazorLocal.Pages.Auftrag
             }
             catch (Exception e)
             {
-                //Logger.LogError(e, $"{GetUserName()}*Error: Zugangsdaten/SendMail");
+                Logger.LogError(e, $"{GetUserName()}*Error: Zugangsdaten/SendMail");
                 ErrorModel.IsOpen = true;
                 ErrorModel.ErrorContext = e.StackTrace;
                 ErrorModel.ErrorMessage = e.Message;
@@ -156,8 +130,8 @@ namespace BlazorLocal.Pages.Auftrag
 
         protected async Task OpenConfirmServiceRemove(AuftragItemViewModel auftrag)
         {
-            var result = await MatDialogService.AskAsync("Are you sure?", new string[] { "Yes", "No" });
-            if (result == "Yes")
+            var result = await MatDialogService.AskAsync($"Möchten Sie den Datensatz {auftrag.Laufnummer} wirklich löschen?", new string[] { "Löschen", "Abbrechen" });
+            if (result == "Löschen")
             {
                 try
                 {
@@ -167,14 +141,47 @@ namespace BlazorLocal.Pages.Auftrag
 
                 catch (Exception e)
                 {
-                    //Logger.LogError(e, $"{GetUserName}*Error: AuftragPage/Remove");
-                    //ErrorModel.IsOpen = true;
-                    //ErrorModel.ErrorContext = e.StackTrace;
-                    //ErrorModel.ErrorMessage = e.Message;
+                    Logger.LogError(e, $"{GetUserName()}*Error: AuftragPage/Remove");
+                    ErrorModel.IsOpen = true;
+                    ErrorModel.ErrorContext = e.StackTrace;
+                    ErrorModel.ErrorMessage = e.Message;
                     IsFailed = true;
                     StateHasChanged();
                 }
             }
+        }
+
+        protected async Task ChooseFahrzeugstatus(ChangeEventArgs e)
+        {
+            selectedFahrzeugstatus = e.Value.ToString();
+            Model = await Service.GetAll(selectedFahrzeugstatus);
+            StateHasChanged();
+        }
+
+        protected async Task Generate()
+        {
+            isLoadingFinished = false;
+            await Task.Delay(1);
+
+            var y = 0;
+            for (var i = 0; i < 5000; i++, y++)
+            {
+                while (y > 7)
+                {
+                    y = 0;
+                }
+
+                await Save(new AuftragItemViewModel()
+                {
+                    KundeId = y,
+                    Laufnummer = i.ToString() + " nummer"
+                });
+            }
+
+            Model = await Service.GetAll(selectedFahrzeugstatus);
+
+            isLoadingFinished = true;
+            StateHasChanged();
         }
     }
 }

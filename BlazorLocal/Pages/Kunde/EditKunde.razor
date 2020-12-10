@@ -1,0 +1,65 @@
+﻿@using BlazorLocal.PageModels
+
+<div>
+    <MatDialog @bind-IsOpen="@ViewModel.DialogIsOpen" CanBeClosed="false">
+        <EditForm Model="ViewModel.Model" OnValidSubmit="@(() => { SaveItem.InvokeAsync(ViewModel.Model); ViewModel.DialogIsOpen = false; })">
+            <MatDialogTitle class="diHeader">
+                <h3>Kunde erstellen @(ViewModel.Model.KundeId > 0 ? "#" + ViewModel.Model.KundeId : "")</h3>
+                <div class="btn-group">
+                    <input type="submit" value="Speichern" class="btn btn-nav btn-primary mr-1" style="float: right;" />
+                    <span class="btn btn-nav" @onclick="@(e => {ViewModel.DialogIsOpen = false;})">X</span>
+                </div>
+                <hr />
+            </MatDialogTitle>
+            <MatDialogContent>
+                <DataAnnotationsValidator />
+                <div style="width:600px;">
+                    @* <div class="form-group row mb-1">
+                            <label for="KundeId" class="col-4 pl-0">KundeId</label>
+                            <InputNumber @bind-Value="@ViewModel.Model.KundeId" Class="form-control form-control-sm col-8" id="KundeId"></InputNumber>
+                            <ValidationMessage For="@(() => ViewModel.Model.KundeId)" />
+                        </div>*@
+                    <div class="form-group row mb-1">
+                        <label for="KundeName" class="col-4 pl-0">KundeName</label>
+                        <InputText @bind-Value="@ViewModel.Model.KundeName" Class="form-control form-control-sm col-8" id="KundeName"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.KundeName)" />
+                    </div> <div class="form-group row mb-1">
+                        <label for="KundeNR" class="col-4 pl-0">KundeNR</label>
+                        <InputText @bind-Value="@ViewModel.Model.KundeNR" Class="form-control form-control-sm col-8" id="KundeNR"></InputText>
+                        <ValidationMessage For="@(() => ViewModel.Model.KundeNR)" />
+                    </div>
+                    <hr class="mb-1" />
+                    <h3>Konfiguration Auftragserfassung</h3>
+                    <div class="form-group row mb-1">
+                        <label for="IsOrdernummerVINshort" class="col-4 pl-0">OrdernummerVINshort</label>
+                        <InputCheckbox @bind-Value="@ViewModel.Model.ConfModel.IsOrdernummerVINshort" Class="form-control form-control-sm col-2 h-20" id="IsOrdernummerVINshort"></InputCheckbox>
+                        <ValidationMessage For="@(() => ViewModel.Model.ConfModel.IsOrdernummerVINshort)" />
+                        <label for="IsHaendlernummer" class="col-4 pl-0">Haendlernummer</label>
+                        <InputCheckbox @bind-Value="@ViewModel.Model.ConfModel.IsHaendlernummer" Class="form-control form-control-sm col-2 h-20" id="IsHaendlernummer"></InputCheckbox>
+                        <ValidationMessage For="@(() => ViewModel.Model.ConfModel.IsHaendlernummer)" />
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label for="IsHaendlerName" class="col-4 pl-0">HaendlerName</label>
+                        <InputCheckbox @bind-Value="@ViewModel.Model.ConfModel.IsHaendlerName" Class="form-control form-control-sm col-2 h-20" id="IsHaendlerName"></InputCheckbox>
+                        <ValidationMessage For="@(() => ViewModel.Model.ConfModel.IsHaendlerName)" />
+                        <label for="IsLieferort" class="col-4 pl-0">Lieferort</label>
+                        <InputCheckbox @bind-Value="@ViewModel.Model.ConfModel.IsLieferort" Class="form-control form-control-sm col-2 h-20" id="IsLieferort"></InputCheckbox>
+                        <ValidationMessage For="@(() => ViewModel.Model.ConfModel.IsLieferort)" />
+                    </div>
+                    <div class="form-group row mb-1">
+                        <label for="IsLieferortAnsprechpartner" class="col-4 pl-0">LieferortAnsprechpartner</label>
+                        <InputCheckbox @bind-Value="@ViewModel.Model.ConfModel.IsLieferortAnsprechpartner" Class="form-control form-control-sm col-2 h-20" id="IsLieferortAnsprechpartner"></InputCheckbox>
+                        <ValidationMessage For="@(() => ViewModel.Model.ConfModel.IsLieferortAnsprechpartner)" />
+                    </div>
+
+                </div>
+            </MatDialogContent>
+        </EditForm>
+    </MatDialog>
+</div>
+@code {
+    [Parameter] public EditDialogKundeViewModel ViewModel { get; set; }
+
+    [Parameter] public EventCallback<KundeItemViewModel> SaveItem { get; set; }
+
+}

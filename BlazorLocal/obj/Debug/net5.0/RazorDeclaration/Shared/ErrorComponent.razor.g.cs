@@ -84,28 +84,7 @@ using MatBlazor;
 #nullable disable
 #nullable restore
 #line 1 "D:\Repository\PolarEffektStats\BlazorLocal\Shared\ErrorComponent.razor"
-using Microsoft.AspNetCore.Http;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "D:\Repository\PolarEffektStats\BlazorLocal\Shared\ErrorComponent.razor"
 using System.Net.Http;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "D:\Repository\PolarEffektStats\BlazorLocal\Shared\ErrorComponent.razor"
-using System.Net.Http.Headers;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "D:\Repository\PolarEffektStats\BlazorLocal\Shared\ErrorComponent.razor"
-using Newtonsoft.Json;
 
 #line default
 #line hidden
@@ -118,7 +97,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "D:\Repository\PolarEffektStats\BlazorLocal\Shared\ErrorComponent.razor"
+#line 42 "D:\Repository\PolarEffektStats\BlazorLocal\Shared\ErrorComponent.razor"
        
     [CascadingParameter] Task<AuthenticationState> authenticationStateTask { get; set; }
 
@@ -160,7 +139,6 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager UriHelper { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }
 #pragma warning restore 1591

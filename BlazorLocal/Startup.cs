@@ -19,6 +19,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlazorLocal.Data.Models;
 using BlazorLocal.Data.Services.MailingServices;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace BlazorLocal
 {
@@ -40,6 +42,7 @@ namespace BlazorLocal
                  options.UseSqlite("Data Source = Users.db")
                 );
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<IdentityOptions>(options =>
@@ -63,22 +66,33 @@ namespace BlazorLocal
                 options.User.RequireUniqueEmail = true;
             });
 
+            services.AddTransient<IEmailSender, BaseMailingService>();
+
 
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            services.AddSingleton<ILogger, Logger>();
+            services.AddSingleton<ILoggerProvider, LoggerProvider>();
+            services.AddSingleton<IPushNotificationsQueue, PushNotificationsQueue>();
+
+            services.AddHostedService<PushNotificationsDequeuer>();
+
+            services.AddLogging();
             var Conn = Configuration.GetConnectionString("MySQLConnection");
-
-            services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<AspNetUsersService>();
             services.AddScoped<AuftragService>();
-            services.AddScoped<DataSheetService>(option => new DataSheetService(Conn));
+            services.AddScoped<KundeService>();
             services.AddScoped<StatSheetService>(option => new StatSheetService(Conn));
+            services.AddScoped<StatPolarService>(option => new StatPolarService(Conn));
             services.AddMatBlazor();
-
-            services.AddSingleton(Configuration.GetSection("MailSetting").Get<MailSettings>());
-            services.AddSingleton<MailingService>();
+           
+            services.AddScoped<MailingService>();
+            services.AddScoped<TestControlMailingService>();
+            services.AddScoped<SystemPageService>();
+            services.AddScoped<SMTPSettingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

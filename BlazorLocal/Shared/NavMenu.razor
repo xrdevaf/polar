@@ -2,17 +2,27 @@
 
 <div class="top-row px-4">
     <div class="row mr-auto">
+        <span class="span-link" title="Realisierungskonzept: Autragserfassung">Statistik</span>
         <AuthorizeView>
             <Authorized>
-                <a class="nav-link" href="DataSheet" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "DataSheet", true))">
-                    Aufträge
+                <a class="nav-link" href="Statistik" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "StatSheet", true))">
+                    Statistik
+                </a>
+                <a class="nav-link" href="StatPolar" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "StatPolar", true))">
+                    Stat Polar
                 </a>
             </Authorized>
         </AuthorizeView>
-        <AuthorizeView>
+        <AuthorizeView Roles="Administrator">
             <Authorized>
-                <a class="nav-link" href="StatSheet" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "StatSheet", true))">
-                    Statistik
+                <a class="nav-link" href="AspNetUsers" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "AspNetUsers", true))">
+                    Benutzer
+                </a>
+                <a class="nav-link" href="system/errors" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "system/errors", true))">
+                    System
+                </a>
+                <a class="nav-link" href="system/smtpsettings" @onclick:preventDefault @onclick="@(()=>UriHelper.NavigateTo(UriHelper.BaseUri + "system/smtpsettings", true))">
+                    SMTP
                 </a>
             </Authorized>
         </AuthorizeView>

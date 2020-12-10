@@ -1,5 +1,6 @@
 ﻿@page "/Auftrag"
 @inherits AuftragViewModel
+@attribute [Authorize]
 
 @if (!isLoadingFinished)
 {
@@ -9,12 +10,23 @@
 
 @if (!IsFailed)
 {
-    <div class="mt-2">
-        <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
-    </div>
+    <div class="d-flex justify-content-between">
+        <div class="row">
+            <div class="mt-2">
+                <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
+                <span class="btn glyphicon glyphicon-plus" @onclick="@CreateItem" style="color: #0366d6;"></span>
+            </div>
+        </div>
+        <div>
+            <select class="form-control form-control-sm ml-2" style="width: 100px;" @onchange=@ChooseFahrzeugstatus title="Select Fahrzeugstatus">
+                <option value="">--</option>
+                @foreach (var val in Globals.FahrzeugstatusDictionary)
+                {
+                    <option value="@val.Key">@val.Value</option>
 
-    <div>
-        <span class="btn btn-nav" @onclick="@CreateItem">Hinzufügen</span>
+                }
+            </select>
+        </div>
     </div>
     <table class="table table-sm col-12">
         <thead>
@@ -24,7 +36,7 @@
                     <SortIcon Column="AuftragId" Title="AuftragId" Sort="@Sort"></SortIcon>
                 </th>
                 <th>
-                    <SortIcon Column="Kunde" Title="Kunde" Sort="@Sort"></SortIcon>
+                    <SortIcon Column="KundeName" Title="Kunde" Sort="@Sort"></SortIcon>
                 </th>
                 <th>
                     <SortIcon Column="Laufnummer" Title="Laufnummer" Sort="@Sort"></SortIcon>
@@ -62,7 +74,7 @@
             <tr>
 
                 <td>@item.AuftragId</td>
-                <td>@item.Kunde</td>
+                <td>@item.KundeName</td>
                 <td>@item.Laufnummer</td>
                 <td>@item.OrdernummerVINshort</td>
                 <td>@item.Haendlernummer</td>
@@ -73,7 +85,7 @@
                 <td>@item.Fahrzeugtyp</td>
                 <td>@item.Fahrzeugstatus</td>
                 <td>
-                    <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
+                    <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => OpenSendMail(item))"></i>
                     <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
                     <MatButton Class="smallBtnMatBlazor" OnClick="@(_ => OpenConfirmServiceRemove(item))"><i class="btn glyphicon glyphicon-remove-circle cursor"></i></MatButton>
                 </td>
@@ -84,8 +96,13 @@
     {
         <EditAuftrag ViewModel="@EditViewModel" SaveItem="@Save" />
     }
+
+    @if (EmailComponentModel.IsOpen)
+    {
+        <EmailComponent Model="@EmailComponentModel" Send="@SendMail"></EmailComponent>
+    }
 }
 else
 {
-<ErrorComponent Model="@ErrorModel"></ErrorComponent>
+    <ErrorComponent Model="@ErrorModel"></ErrorComponent>
 }

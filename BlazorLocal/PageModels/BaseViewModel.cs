@@ -12,7 +12,7 @@ namespace BlazorLocal.PageModels
 {
     public class BaseViewModel : ComponentBase, IDisposable
     {
-        //[Inject] protected ILogger Logger { get; set; }
+        [Inject] protected ILogger Logger { get; set; }
 
         [Inject] protected NavigationManager UriHelper { get; set; }
         [CascadingParameter] protected Task<AuthenticationState> authenticationStateTask { get; set; }           

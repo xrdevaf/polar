@@ -1,0 +1,72 @@
+﻿@using BlazorLocal.Data.Services.MailingServices
+@inject MailingService MailingService
+
+<MatDialog @bind-IsOpen="@Model.IsOpen" CanBeClosed="false">
+    <MatDialogTitle Class="diHeader">
+        <h3>E-Mail versenden</h3>
+        <div class="btn-group">
+            <span class="btn btn-nav" @onclick="@CloseDialog">
+                <i class="glyphicon glyphicon-remove"></i>
+            </span>
+        </div>
+        <hr />
+    </MatDialogTitle>
+    <MatDialogContent>
+        <div class="h-100" style="width:500px;">
+            @if (EmailModel != null)
+            {
+                <EditForm Model="@EmailModel" OnValidSubmit="@SendMessage">
+                    <DataAnnotationsValidator />
+                    <div class="form-group">
+                        <label for="inputfrom">Von</label>
+                        <InputText @bind-Value="@EmailModel.From" class="form-control form-control-sm" id="inputfrom"></InputText>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputto">An</label>
+                        <InputText @bind-Value="@EmailModel.To" class="form-control form-control-sm" id="inputto"></InputText>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputsubject">Betreff</label>
+                        <InputText @bind-Value="@EmailModel.Subject" class="form-control form-control-sm" id="inputsubject"></InputText>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputbody">Ihre Nachricht</label>
+                        <InputTextArea @bind-Value="@EmailModel.Body" class="form-control form-control-sm" id="inputbody" rows="4" style="width: 100%;"></InputTextArea>
+                    </div>
+                    <div class="btn-group mt-4 float-right">
+                        <button type="submit" class="btn btn-outline-primary btn-nav">Senden</button>
+                    </div>
+                </EditForm>
+            }
+        </div>
+    </MatDialogContent>
+</MatDialog>
+
+
+@code {
+    [Parameter] public EmailComponentModel Model { get; set; }
+    [Parameter] public EventCallback<EmailModel> Send { get; set; }
+    private EmailModel EmailModel { get; set; }
+    protected bool isLoadingFinished = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        EmailModel = new EmailModel()
+        {
+            Body = Model.DefaultBodyText,
+            From = Model.DefaultFrom
+        };
+    }
+
+    private void CloseDialog()
+    {
+        Model.IsOpen = false;
+    }
+
+    private async Task SendMessage()
+    {
+        Model.IsOpen = false;
+        await Send.InvokeAsync(EmailModel);
+    }
+}

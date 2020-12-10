@@ -81,4 +81,3 @@ C:\Users\DesktopVlad\Documents\PolarEffektStats\DbConnector\obj\Debug\DbConnecto
 C:\Users\DesktopVlad\Documents\PolarEffektStats\DbConnector\obj\Debug\DbConnector.csproj.CopyComplete
 C:\Users\DesktopVlad\Documents\PolarEffektStats\DbConnector\obj\Debug\DbConnector.dll
 C:\Users\DesktopVlad\Documents\PolarEffektStats\DbConnector\obj\Debug\DbConnector.pdb
-D:\Repository\PolarEffektStats\DbConnector\bin\Debug\MySql.Data.xml

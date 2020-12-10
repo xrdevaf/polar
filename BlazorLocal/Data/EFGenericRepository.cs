@@ -42,6 +42,11 @@ namespace BlazorLocal.Data
             return _dbSet.Find(id);
         }
 
+        public TEntity FindById(string id)
+        {
+            return _dbSet.Find(id);
+        }
+
         public TEntity Create(TEntity item)
         {
             var itemNew = _dbSet.Add(item).Entity;

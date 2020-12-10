@@ -1,0 +1,60 @@
+﻿@page "/AspNetUsers"
+@inherits AspNetUsersViewModel
+@attribute [Authorize(Roles = "Administrator")]
+
+<div class="d-flex justify-content-between">
+    <div class="row">
+        <div class="mt-2">
+            <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
+            <span class="btn glyphicon glyphicon-plus" @onclick="@CreateItem" style="color: #0366d6;" title="Neuen Benutzer erstellen"></span>
+        </div>
+    </div>
+</div>
+
+<table class="table table-sm col-12">
+    <thead>
+        <tr>
+            <th>
+                <SortIcon Column="UserName" Title="Benutzername" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="RoleName" Title="Benutzerrolle" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="Email" Title="E-Mail" Sort="@Sort"></SortIcon>
+            </th>          
+            <th>
+                <SortIcon Column="PhoneNumber" Title="Telefon" Sort="@Sort"></SortIcon>
+            </th>  
+            <th>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.RoleName</td>
+            <td>@item.Email</td>           
+            <td>@item.PhoneNumber</td>          
+            <td>
+                <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
+
+                <i class="btn glyphicon glyphicon-lock" @onclick="@(() => EditPasswordOpenDialog(item))"></i>
+
+                <i class="btn glyphicon glyphicon-remove-circle cursor" @onclick="@(() => OpenConfirmServiceRemove(item))"></i>
+
+                @*<LogComponent Logs="@item.ChangeLog"></LogComponent>*@
+            </td>
+        </tr>
+    }
+</table>
+@if (currentItem != null && EditViewModel.DialogIsOpen)
+{
+    <EditAspNetUsers ViewModel="@EditViewModel" SaveItem="@Save" />
+}
+
+@if (currentItem != null && EditPasswordViewModel.DialogIsOpen)
+{
+    <EditPassword ViewModel="@EditPasswordViewModel" SaveItem="@EditPassword" />
+}

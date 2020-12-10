@@ -1,0 +1,75 @@
+﻿@page "/system/smtpsettings"
+@inherits SMTPSettingViewModel
+@attribute [Authorize(Roles = "Administrator")]
+
+<div class="d-flex justify-content-between">
+    <div class="row">
+        <div class="mt-2">
+            <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
+        </div>
+        <div class="ml-1">
+            <span class="btn glyphicon glyphicon-plus" @onclick="@CreateItem" style="color: #0366d6"></span>
+        </div>
+    </div>
+</div>
+
+<table class="table table-sm col-12">
+    <thead>
+        <tr>
+            <th>
+                <SortIcon Column="SMTPSettingId" Title="SMTPSettingId" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="SMTPUsername" Title="SMTPUsername" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="SMTPPassword" Title="SMTPPassword" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="SMTPServer" Title="SMTPServer" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="SMTPPort" Title="SMTPPort" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="EnableSSL" Title="EnableSSL" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="IsActive" Title="IsActive" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.SMTPSettingId</td>
+            <td>@item.SMTPUsername</td>
+            <td>@item.SMTPPassword</td>
+            <td>@item.SMTPServer</td>
+            <td>@item.SMTPPort</td>
+            <td>
+                @if (item.EnableSSL)
+                {
+                    <i class="glyphicon glyphicon-check"></i>
+                }
+            </td>
+            <td>
+                @if (item.IsActive)
+                {
+                    <i class="glyphicon glyphicon-check"></i>
+                }
+            </td>
+            <td>
+                <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
+                <i class="btn glyphicon glyphicon-remove-circle cursor" @onclick="@(() => Remove(item))"></i>
+            </td>
+        </tr>
+    }
+</table>
+@if (currentItem != null && EditViewModel.DialogIsOpen)
+{
+    <EditSMTPSetting ViewModel="@EditViewModel" SaveItem="@Save" />
+}

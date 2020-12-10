@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BlazorLocal.Data.ModelsDB;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,8 @@ namespace BlazorLocal.Data
         }
 
         DbSet<Auftrag> AuftragDbSet { get; set; }
+        DbSet<Kunde> KundeDbSet { get; set; }
+        DbSet<LogApplicationError> LogApplicationErrorDbSet { get; set; }
+        public DbSet<SMTPSetting> SMTPSettingDbSet { get; set; }
     }
 }

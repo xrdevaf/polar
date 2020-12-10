@@ -1,0 +1,84 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using BlazorLocal.Data.Services
+@using MatBlazor
+@using BlazorLocal.PageModels
+@inject AspNetUsersService Service
+
+<div>
+    <MatDialog @bind-IsOpen="@ViewModel.DialogIsOpen" CanBeClosed="false">
+        <EditForm Model="ViewModel.Model" OnValidSubmit="@(() => { SaveItem.InvokeAsync(ViewModel.Model); ViewModel.DialogIsOpen = false; })">
+            <MatDialogTitle class="diHeader">
+                <h3>AspNetUser</h3>
+                <div class="btn-group">
+                    <input type="submit" value="Speichern" class="btn btn-nav btn-primary mr-1" style="float: right;" />
+                    <span class="btn btn-nav" @onclick="@(e => {ViewModel.DialogIsOpen = false;})">X</span>
+                </div>
+                <hr />
+            </MatDialogTitle>
+            <MatDialogContent>
+                <DataAnnotationsValidator />
+                <div style="width: 600px;">
+                    @if (ViewModel.Model.AspNetUsersId == null)
+                    {
+                        <div class="form-group row mb-1">
+                            <label for="Email" class="col-4 pl-0">Email</label>
+                            <InputText @bind-Value="@ViewModel.Model.Email" Class="form-control form-control-sm col-8" id="Email"></InputText>
+                            <ValidationMessage For="@(() => ViewModel.Model.Email)" />
+                        </div>
+                        <div class="form-group row mb-1">
+                            <label for="Password" class="col-4 pl-0">Password</label>
+                            <InputText @bind-Value="@ViewModel.Model.Password" Class="form-control form-control-sm col-8" id="Password"></InputText>
+                            <ValidationMessage For="@(() => ViewModel.Model.Password)" />
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div class="form-group row mb-1">
+                            <label for="UserRole" class="col-4 pl-0">UserName</label>
+                            <InputSelect @bind-Value="@ViewModel.Model.RoleName" Class="form-control form-control-sm col-8" id="UserRole">
+                                <option value="">--</option>
+                                @if (Roles != null)
+                                    {
+                                        foreach (var role in Roles)
+                                        {
+                                        <option value="@role.Name">@role.Name</option>
+                                        }
+                                    }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => ViewModel.Model.RoleName)" />
+                        </div>
+
+                        <div class="form-group row mb-1">
+                            <label for="UserName" class="col-4 pl-0">UserName</label>
+                            <InputText @bind-Value="@ViewModel.Model.UserName" Class="form-control form-control-sm col-8" id="UserName"></InputText>
+                            <ValidationMessage For="@(() => ViewModel.Model.UserName)" />
+                        </div>
+                        <div class="form-group row mb-1">
+                            <label for="Email" class="col-4 pl-0">Email</label>
+                            <InputText @bind-Value="@ViewModel.Model.Email" Class="form-control form-control-sm col-8" id="Email"></InputText>
+                            <ValidationMessage For="@(() => ViewModel.Model.Email)" />
+                        </div>
+                        <div class="form-group row mb-1">
+                            <label for="PhoneNumber" class="col-4 pl-0">PhoneNumber</label>
+                            <InputText @bind-Value="@ViewModel.Model.PhoneNumber" Class="form-control form-control-sm col-8" id="PhoneNumber"></InputText>
+                            <ValidationMessage For="@(() => ViewModel.Model.PhoneNumber)" />
+                        </div>
+                    }
+                </div>
+            </MatDialogContent>
+        </EditForm>
+    </MatDialog>
+</div>
+@code {
+    [Parameter] public EditDialogAspNetUsersViewModel ViewModel { get; set; }
+
+    [Parameter] public EventCallback<AspNetUsersItemViewModel> SaveItem { get; set; }
+    private List<Microsoft.AspNetCore.Identity.IdentityRole> Roles { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Roles = await Service.GetAllRoles();
+    }
+}

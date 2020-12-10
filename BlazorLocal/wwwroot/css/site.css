@@ -1,11 +1,11 @@
 @import url('glyphicon.css');
-@import url('fontawesome.min.css');
+/*@import url('fontawesome.min.css');
 
 @font-face {
     font-family: 'Font Awesome 5 Free';
     src: url('fonts/fa-regular-400.eot');
     src: url('fonts/fa-regular-400.eot?#iefix') format('embedded-opentype'),url('fonts/fa-regular-400.woff2') format('woff2'), url('webfonts/fa-regular-400.woff') format('woff'), url('fonts/fa-regular-400.ttf') format('truetype'), url('fonts/fa-regular-400.svg#fontawesome') format('svg');
-}
+}*/
 
 @font-face {
     font-family: 'Glyphicons Halflings';
@@ -13,11 +13,11 @@
     src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-.fa,
+/*.fa,
 .fas {
     font-family: 'Font Awesome 5 Free';
     font-weight: 400;
-}
+}*/
 
 * {
     -webkit-box-sizing: border-box;
@@ -720,15 +720,16 @@ input[type=number] {
     .auftragImportDialogContent .cntLeftSidebar {
         padding-left: 20px;
     }
-.mat-tab-label.mdc-tab.mdc-tab--disabled{
-    cursor:default;
 
+.mat-tab-label.mdc-tab.mdc-tab--disabled {
+    cursor: default;
 }
 
 .mdc-tab--disabled .mdc-tab__ripple::before, .mdc-tab__ripple::after {
     background-color: transparent;
 }
-.modalDialogEditBezugsweg.mdc-dialog .mdc-dialog__surface{
+
+.modalDialogEditBezugsweg.mdc-dialog .mdc-dialog__surface {
     height: 630px !important;
 }
 
@@ -737,4 +738,16 @@ input[type=number] {
     height: auto !important;
     padding: 0px !important;
     margin: 0px !important;
+}
+
+.span-link {
+    display: block;
+    padding: .5rem;
+    font-weight: 600;
+    color: gray;
+    margin-left: -15px;
+}
+
+.h-20 {
+    height: 20px !important;
 }

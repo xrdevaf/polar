@@ -97,6 +97,29 @@ using MatBlazor;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 8 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\Index.razor"
+      
+    [CascadingParameter] Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateTask;
+        var user = authState.User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            UriHelper.NavigateTo(UriHelper.BaseUri + "Identity/Account/Login", true);
+        }
+        else
+        {
+            UriHelper.NavigateTo(UriHelper.BaseUri + "StatSheet", true);
+        }
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager UriHelper { get; set; }
     }
 }
 #pragma warning restore 1591

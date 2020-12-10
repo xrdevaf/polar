@@ -1,0 +1,45 @@
+﻿@page "/Kunde"
+@inherits KundeViewModel
+@attribute [Authorize]
+
+<div class="d-flex justify-content-between">
+    <div class="row">
+        <div class="mt-2">
+            <span class="glyphicon glyphicon-filter"></span>@(Model?.Count ?? 0) Treffer
+        </div>
+        <div class="ml-1">
+            <span class="btn glyphicon glyphicon-plus" @onclick="@CreateItem" style="color: #0366d6"></span>
+        </div>
+    </div>
+</div>
+
+<table class="table table-sm col-12">
+    <thead>
+        <tr>
+            <th>
+                <SortIcon Column="KundeName" Title="KundeName" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+                <SortIcon Column="KundeNR" Title="KundeNR" Sort="@Sort"></SortIcon>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>@item.KundeId</td>*@
+            <td>@item.KundeName</td>
+            <td>@item.KundeNR</td>
+            <td>
+                <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
+                @*<MatButton Class="smallBtnMatBlazor" OnClick="@(_ => OpenConfirmServiceRemove(item))"><i class="btn glyphicon glyphicon-remove-circle cursor"></i></MatButton>*@
+            </td>
+        </tr>
+    }
+</table>
+@if (currentItem != null && EditViewModel.DialogIsOpen)
+{
+    <EditKunde ViewModel="@EditViewModel" SaveItem="@Save" />
+}
