@@ -1,6 +1,5 @@
 ﻿using DbConnector.ModelsDB;
 using MySql.Data.MySqlClient;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +12,6 @@ namespace DbConnector
     public class DbContext
     {
         MySqlConnection connection;
-        static Logger Logger = LogManager.GetCurrentClassLogger();
         public string ConnectionError { get; set; } = string.Empty;
 
         public DbContext(string ConnectionString)
@@ -28,7 +26,6 @@ namespace DbConnector
             {
                 ConnectionError = "Database:" + "Unable to open database connection.";
                 Console.WriteLine(ConnectionError);
-                Logger.Error("Database:" + ex.Message);
             }
 
         }
@@ -62,7 +59,6 @@ namespace DbConnector
             catch (Exception ex)
             {
                 Console.WriteLine("Database: Unable to retrieve records () from the database.");
-                Logger.Error("Database:" + ex.Message);
                 CloseConnection();
                 return null;
             }
@@ -89,7 +85,6 @@ namespace DbConnector
             catch (Exception ex)
             {
                 Console.WriteLine("Database: Unable to retrieve records () from the database.");
-                Logger.Error("Database:" + ex.Message);
                 CloseConnection();
                 return null;
             }
@@ -128,7 +123,6 @@ namespace DbConnector
             catch (Exception ex)
             {
                 Console.WriteLine("Database: Unable to retrieve records () from the database.");
-                Logger.Error("Database:" + ex.Message);
                 CloseConnection();
                 return null;
             }

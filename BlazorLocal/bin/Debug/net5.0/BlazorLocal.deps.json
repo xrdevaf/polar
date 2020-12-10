@@ -35,6 +35,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "5.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.0",
           "MySql.Data": "8.0.22",
+          "NLog": "4.7.6",
           "NPOI": "2.5.2",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -1416,6 +1417,17 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "NLog/4.7.6": {
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.7.6.12219"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NLog.dll": {}
+        }
+      },
       "NPOI/2.5.2": {
         "dependencies": {
           "Portable.BouncyCastle": "1.8.6",
@@ -2664,14 +2676,6 @@
         },
         "compile": {
           "DbConnector.dll": {}
-        }
-      },
-      "NLog/4.0.0.0": {
-        "runtime": {
-          "NLog.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.7.5.12092"
-          }
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -4940,6 +4944,13 @@
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
     },
+    "NLog/4.7.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mVYfNsZk6HY26/S/T3vVd2RS/1GySaeNh6bjP8uE7mKAdTENlRycQr7S4FC+I//QflXl/D/HEEugE47BDxQ5wA==",
+      "path": "nlog/4.7.6",
+      "hashPath": "nlog.4.7.6.nupkg.sha512"
+    },
     "NPOI/2.5.2": {
       "type": "package",
       "serviceable": true,
@@ -5691,11 +5702,6 @@
     },
     "DbConnector/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "NLog/4.0.0.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

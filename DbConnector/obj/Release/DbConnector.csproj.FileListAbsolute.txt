@@ -1,0 +1,16 @@
+D:\Repository\PolarEffektStats\DbConnector\obj\Release\DbConnector.csproj.CoreCompileInputs.cache
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\DbConnector.dll.config
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\DbConnector.dll
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\DbConnector.pdb
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\MySql.Data.dll
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\System.Buffers.dll
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\System.Memory.dll
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\Ubiety.Dns.Core.dll
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\Zstandard.Net.dll
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\MySql.Data.xml
+D:\Repository\PolarEffektStats\DbConnector\obj\Release\DbConnector.csprojAssemblyReference.cache
+D:\Repository\PolarEffektStats\DbConnector\obj\Release\DbConnector.csproj.CopyComplete
+D:\Repository\PolarEffektStats\DbConnector\obj\Release\DbConnector.dll
+D:\Repository\PolarEffektStats\DbConnector\obj\Release\DbConnector.pdb
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\NLog.dll
+D:\Repository\PolarEffektStats\DbConnector\bin\Release\NLog.xml

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "frEN8cKeN78JxUNsdKjq0C6oLWJ9vUjtcXeXhdTDlpDh8pgrBKKcEO8XcUiIX6IsVxWsNC8vrSKlhKBM/KVuhA==",
+  "dgSpecHash": "sk9IK5aYXdqtqFrZqoza6j39y7xB6y1zzfAHaz3ndxG961pGBL8iNkyz80Lw3bCtRLAWAlKngmVCYmHwLkR4vA==",
   "success": true,
   "projectFilePath": "D:\\Repository\\PolarEffektStats\\BlazorLocal\\BlazorLocal.csproj",
   "expectedPackageFiles": [
@@ -84,6 +84,7 @@
     "C:\\Users\\user\\.nuget\\packages\\mysql.data\\8.0.22\\mysql.data.8.0.22.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\nlog\\4.7.6\\nlog.4.7.6.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\npoi\\2.5.2\\npoi.2.5.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\portable.bouncycastle\\1.8.6\\portable.bouncycastle.1.8.6.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",

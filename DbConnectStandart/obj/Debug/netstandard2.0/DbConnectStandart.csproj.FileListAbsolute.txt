@@ -7,3 +7,12 @@ D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.
 D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.csproj.CoreCompileInputs.cache
 D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.dll
 D:\Repository\Sibelektroshopstats_temp\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.pdb
+D:\Repository\PolarEffektStats\DbConnectStandart\bin\Debug\netstandard2.0\DbConnectStandart.deps.json
+D:\Repository\PolarEffektStats\DbConnectStandart\bin\Debug\netstandard2.0\DbConnectStandart.dll
+D:\Repository\PolarEffektStats\DbConnectStandart\bin\Debug\netstandard2.0\DbConnectStandart.pdb
+D:\Repository\PolarEffektStats\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.csprojAssemblyReference.cache
+D:\Repository\PolarEffektStats\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.AssemblyInfoInputs.cache
+D:\Repository\PolarEffektStats\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.AssemblyInfo.cs
+D:\Repository\PolarEffektStats\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.csproj.CoreCompileInputs.cache
+D:\Repository\PolarEffektStats\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.dll
+D:\Repository\PolarEffektStats\DbConnectStandart\obj\Debug\netstandard2.0\DbConnectStandart.pdb
