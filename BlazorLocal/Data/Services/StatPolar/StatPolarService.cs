@@ -24,12 +24,22 @@ namespace BlazorLocal.Data.Services
             {
                 for (int month = 1; month < 13; month++)
                 {
-                   var point = new DbConnector.DbContext(_connStr).GetStatPolar(year, month);
-                   result.Add(Convert(point));
+                    var point = new DbConnector.DbContext(_connStr).GetStatPolar(year, month);
+                    result.Add(Convert(point));
                 }
+            }       
+
+            result = result.OrderByDescending(r => r.year).ThenByDescending(r => r.month).ToList();
+            
+
+            for (int i = 0; i < result.Count - 1; i++)
+            {
+                result[i].percentage = (((float)result[i].shopware / (float)result[i+1].shopware) * 100) - 100;
             }
+
             return result;
-        }
+        }      
+
         private static StatPolarItemViewModel Convert(StatPolar r)
         {
             return new StatPolarItemViewModel(r);

@@ -1,5 +1,6 @@
 ﻿@page "/Statistik"
 @inherits BlazorLocal.Pages.StatSheet.StatSheetViewModel
+@attribute [Authorize(Roles = "Administrator")]
 
 @if (!isLoadingFinished)
 {

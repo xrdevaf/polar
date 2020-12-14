@@ -1,5 +1,6 @@
 ﻿@page "/StatPolar"
 @inherits BlazorLocal.Pages.StatPolar.StatPolarViewModel
+@attribute [Authorize]
 
 @if (!isLoadingFinished)
 {
@@ -23,16 +24,16 @@
             <thead>
                 <tr>
                     <th>
-                        <SortIcon Column="Year" Title="Jahr" Sort="@Sort"></SortIcon>
+                        Jahr
                     </th>
                     <th>
-                        <SortIcon Column="Month" Title="Monat" Sort="@Sort"></SortIcon>
+                        Monat
                     </th>
                     <th>
-                        <SortIcon Column="Shopware" Title="Polar" Sort="@Sort"></SortIcon>
+                        Polar
                     </th>
                     <th>
-                        <SortIcon Column="Percentage" Title="%" Sort="@Sort"></SortIcon>
+                        %
                     </th>
                     <th>
                     </th>
@@ -44,7 +45,7 @@
                     <td>@item.year</td>
                     <td>@item.month</td>
                     <td>@item.shopware</td>
-                    <td>@item.percentage</td>
+                    <td>@item.percentage.ToString("N2")</td>
                     @* <td>
                             <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
                             <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>
