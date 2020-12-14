@@ -22,34 +22,46 @@ namespace BlazorLocal.Pages.StatPolar
         protected List<StatPolarItemViewModel> Model { get; set; } = new List<StatPolarItemViewModel>();
         protected StatPolarItemViewModel currentItem;
 
-       // protected EditDialogStatPolarViewModel EditViewModel = new EditDialogStatPolarViewModel();
-        protected bool IsFailed { get; set; }
+       // protected EditDialogStatPolarViewModel EditViewModel = new EditDialogStatPolarViewModel();      
         protected bool isLoadingFinished = true;
 
         protected override async Task OnInitializedAsync()
         {
-            try
-            {
-                Model = await Service.GetAll();
+            RedirectUrl = "counter";          
+        }
 
-            }
-            catch (Exception e)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
             {
-                //Logger.LogError(e, $"{GetUserName}*Error: StatPolarPage/OnInitializedAsync");
-                ErrorModel.IsOpen = true;
-                ErrorModel.ErrorContext = e.StackTrace;
-                ErrorModel.ErrorMessage = e.Message;
-                IsFailed = true;
-                StateHasChanged();
+                try
+                {
+                    isLoadingFinished = false;
+                    StateHasChanged();
+
+                    Model = await Service.GetAll();
+
+                    isLoadingFinished = true;
+                    StateHasChanged();
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e, $"{GetUserName()}*Error: StatPolarPage/OnAfterRenderAsync");
+                    ErrorModel.IsOpen = true;
+                    ErrorModel.ErrorContext = e.StackTrace;
+                    ErrorModel.ErrorMessage = e.Message;
+                    IsFailed = true;
+                    StateHasChanged();
+                }
             }
         }
 
-      /*  public void CreateItem()
-        {
-            currentItem = new StatPolarItemViewModel();
-            EditViewModel.Model = currentItem;
-            EditViewModel.DialogIsOpen = true;
-        } */
+        /*  public void CreateItem()
+          {
+              currentItem = new StatPolarItemViewModel();
+              EditViewModel.Model = currentItem;
+              EditViewModel.DialogIsOpen = true;
+          } */
 
         protected void Sort(KeyValuePair<string, string> pair)
         {

@@ -1,4 +1,4 @@
-﻿@page "/StatSheet"
+﻿@page "/Statistik"
 @inherits BlazorLocal.Pages.StatSheet.StatSheetViewModel
 
 @if (!isLoadingFinished)
@@ -68,12 +68,12 @@
         }
     </table>
 }
-@*   @if (currentItem != null && EditViewModel.DialogIsOpen)
+@*@if (currentItem != null && EditViewModel.DialogIsOpen)
         {
             <EditDataSheet ViewModel="@EditViewModel" SaveItem="@Save" />
         }
-    }
-    else
-    {
-        <ErrorComponent Model="@ErrorModel"></ErrorComponent>
-    } *@
+    }*@
+else
+{
+    <ErrorComponent Model="@ErrorModel"></ErrorComponent>
+}

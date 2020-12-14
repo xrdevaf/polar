@@ -16,18 +16,8 @@ namespace DbConnector
 
         public DbContext(string ConnectionString)
         {
-            try
-            {
-                connection = new MySqlConnection(ConnectionString);
-                connection.Open();
-
-            }
-            catch (Exception ex)
-            {
-                ConnectionError = "Database:" + "Unable to open database connection.";
-                Console.WriteLine(ConnectionError);
-            }
-
+            connection = new MySqlConnection(ConnectionString);
+            connection.Open();
         }
 
         //public async Task<List<DataSheet>> GetRuleForDeliveryList()
