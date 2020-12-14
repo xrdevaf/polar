@@ -21,28 +21,28 @@
     <table class="table table-sm col-12">
         <thead>
             <tr>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Year" Title="Jahr" Sort="@Sort"></SortIcon>
                 </th>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Month" Title="Monat" Sort="@Sort"></SortIcon>
                 </th>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Allorders" Title="Gesamt" Sort="@Sort"></SortIcon>
                 </th>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Shoporders" Title="Polar" Sort="@Sort"></SortIcon>
                 </th>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Mangalisterorders" Title="ML Gesamt" Sort="@Sort"></SortIcon>
                 </th>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Soldproducts" Title="AnzP Gesamt" Sort="@Sort"></SortIcon>
                 </th>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Soldproductssw" Title="AnzP Polar" Sort="@Sort"></SortIcon>
                 </th>
-                <th>
+                <th style="text-align: right;">
                     <SortIcon Column="Soldproductsmangalister" Title="AnzP ML" Sort="@Sort"></SortIcon>
                 </th>
                 <th>
@@ -52,14 +52,14 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.year</td>
-                <td>@item.month</td>
-                <td>@item.allorders</td>
-                <td>@item.sworders</td>
-                <td>@item.mangalisterorders</td>
-                <td>@item.soldproducts</td>
-                <td>@item.soldproductssw</td>
-                <td>@item.soldproductsmangalister</td>
+                <td style="text-align: right;">@item.year</td>
+                <td style="text-align: right;">@item.month</td>
+                <td style="text-align: right;">@item.allorders</td>
+                <td style="text-align: right;">@item.sworders</td>
+                <td style="text-align: right;">@item.mangalisterorders</td>
+                <td style="text-align: right;">@item.soldproducts</td>
+                <td style="text-align: right;">@item.soldproductssw</td>
+                <td style="text-align: right;">@item.soldproductsmangalister</td>
                 @* <td>
                         <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
                         <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>

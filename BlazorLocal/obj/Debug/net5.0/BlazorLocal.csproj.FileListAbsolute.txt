@@ -493,3 +493,5 @@ D:\Repository\PolarEffektStats\BlazorLocal\obj\Debug\net5.0\BlazorLocal.genrunti
 D:\Repository\PolarEffektStats\BlazorLocal\bin\Debug\net5.0\SshNet.Security.Cryptography.dll
 D:\Repository\PolarEffektStats\BlazorLocal\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
 D:\Repository\PolarEffektStats\BlazorLocal\bin\Debug\net5.0\NLog.dll
+D:\Repository\PolarEffektStats\BlazorLocal\obj\Debug\net5.0\RazorDeclaration\Pages\Home.razor.g.cs
+D:\Repository\PolarEffektStats\BlazorLocal\obj\Debug\net5.0\Razor\Pages\Home.razor.g.cs

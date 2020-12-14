@@ -23,16 +23,16 @@
         <table class="table table-sm col-12">
             <thead>
                 <tr>
-                    <th>
+                    <th style="text-align: right;">
                         Jahr
                     </th>
-                    <th>
+                    <th style="text-align: right;">
                         Monat
                     </th>
-                    <th>
+                    <th style="text-align: right;">
                         Polar
                     </th>
-                    <th>
+                    <th style="text-align: right;">
                         %
                     </th>
                     <th>
@@ -42,10 +42,10 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.year</td>
-                    <td>@item.month</td>
-                    <td>@item.shopware</td>
-                    <td>@item.percentage.ToString("N2")</td>
+                    <td style="text-align: right;">@item.year</td>
+                    <td style="text-align: right;">@item.month</td>
+                    <td style="text-align: right;">@item.shopware</td>
+                    <td style="text-align: right;">@item.percentage.ToString("N2")</td>
                     @* <td>
                             <i class="btn glyphicon glyphicon-send cursor" @onclick="@(() => SendMail(item))"></i>
                             <i class="btn glyphicon glyphicon-cog" @onclick="@(() => Edit(item))"></i>

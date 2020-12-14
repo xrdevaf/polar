@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorLocal.Pages.StatSheet
+namespace BlazorLocal.Pages
 {
     #line hidden
     using System;
@@ -89,15 +89,8 @@ using MatBlazor;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 3 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\StatSheet\StatSheet.razor"
-           [Authorize(Roles = "Administrator")]
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Statistik")]
-    public partial class StatSheet : BlazorLocal.Pages.StatSheet.StatSheetViewModel
+    [Microsoft.AspNetCore.Components.RouteAttribute("/home")]
+    public partial class Home : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)

@@ -112,7 +112,7 @@ using MatBlazor;
         }
         else
         {
-            UriHelper.NavigateTo(UriHelper.BaseUri + "StatSheet", true);
+            UriHelper.NavigateTo(UriHelper.BaseUri + "home", true);
         }
     }
 

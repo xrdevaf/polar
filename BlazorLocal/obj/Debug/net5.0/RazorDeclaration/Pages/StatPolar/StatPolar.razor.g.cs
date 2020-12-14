@@ -89,6 +89,13 @@ using MatBlazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Repository\PolarEffektStats\BlazorLocal\Pages\StatPolar\StatPolar.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/StatPolar")]
     public partial class StatPolar : BlazorLocal.Pages.StatPolar.StatPolarViewModel
     {
